@@ -12,7 +12,6 @@ import { Circle } from '$lib/PannableCanvas/sizes'
 import { Vec2 } from '$lib/PannableCanvas/vec2'
 import type { Element } from '$lib/PannableCanvas/element'
 import type { PEvent, PointersDict } from '$lib/addMoreEvents'
-import type { Writable } from 'svelte/store'
 import type PannableCanvas__SvelteComponent_ from '$lib/PannableCanvas'
 
 function drawWhenSelectingMatrixSize(ctx: CanvasRenderingContext2D) {}

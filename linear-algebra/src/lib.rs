@@ -71,21 +71,7 @@ pub fn js_array_to_matrix(array: Array) -> Result<Matrix, JsValue> {
 #[wasm_bindgen]
 pub fn m1_op_to_matrix(m1: Array, op: &str) -> Result<Array, JsValue> {
     // convert m1 into a vector of vectors
-    let m1 = m1
-        .iter()
-        .map(|value| {
-            // convert value to a vector without using serde
-            Array::from(&value)
-                .iter()
-                .map(|value| {
-                    value.as_f64().ok_or_else(|| {
-                        JsValue::from("Invalid input: matrix must be a 2D array of numbers")
-                    })
-                })
-                .collect::<Result<Vec<f64>, JsValue>>()
-        })
-        .collect::<Result<Vec<Vec<f64>>, JsValue>>()?;
-    let m = py_matrix(m1);
+    let m = js_array_to_matrix(m1)?;
     let out = match op {
         "rref" => m.rref(),
         "inv" => {
